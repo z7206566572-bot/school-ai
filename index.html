@@ -3,28 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School AI 🤖</title>
+<title>School AI by Lucky Kadol</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f5ff;color:#202342}.app{max-width:850px;margin:auto;min-height:100vh;padding:20px}.hero{background:linear-gradient(135deg,#5949e8,#9476ff);color:white;padding:28px 20px;border-radius:22px;text-align:center}.hero h1{margin:0 0 10px}.subjects{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}.subjects button,.actions button{border:0;border-radius:12px;padding:11px 14px;background:white;color:#5143cf;font-weight:bold;cursor:pointer}.subjects button:focus{background:#e2dcff}.chat{background:white;border-radius:18px;padding:16px;min-height:260px;box-shadow:0 5px 20px #20234212}.msg{padding:12px 14px;border-radius:14px;margin:10px 0;line-height:1.5;white-space:pre-wrap}.bot{background:#f0efff;margin-right:12%}.user{background:#e0f7ec;margin-left:12%;text-align:right}.entry{display:flex;gap:8px;margin-top:12px}.entry input{flex:1;min-width:0;border:1px solid #d7d8e8;border-radius:12px;padding:14px;font-size:16px}.entry button{border:0;background:#5949e8;color:white;border-radius:12px;padding:0 18px;font-weight:bold}.actions{display:flex;gap:8px;justify-content:center;margin:12px 0}.about{text-align:center;color:#676987;font-size:13px;margin:20px}@media(max-width:500px){.app{padding:12px}.hero{padding:22px 12px}.entry button{padding:0 12px}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f0ff;
+  color: #222;
+}
+
+header {
+  background: linear-gradient(135deg, #673de6, #2675ee);
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  border-radius: 0 0 28px 28px;
+}
+
+header h1 {
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+header p {
+  margin: 8px;
+}
+
+.byline {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+main {
+  max-width: 750px;
+  margin: 22px auto;
+  padding: 0 14px;
+}
+
+h2 {
+  color: #5432bd;
+}
+
+.subjects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.subjects button {
+  border: 0;
+  border-radius: 14px;
+  background: white;
+  color: #4930a5;
+  padding: 15px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 3px 12px #dcd5f5;
+  cursor: pointer;
+}
+
+.chat {
+  background: white;
+  padding: 16px;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px #ddd6f5;
+}
+
+#messages {
+  height: 280px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.msg {
+  padding: 11px 13px;
+  border-radius: 14px;
+  margin: 10px 0;
+  max-width: 90%;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.bot {
+  background: #eee9ff;
+  margin-right: auto;
+}
+
+.user {
+  background: #2675ee;
+  color: white;
+  margin-left: auto;
+}
+
+.entry {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.entry button {
+  background: #673de6;
+  color: white;
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.feature {
+  background: white;
+  padding: 15px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px #e2dcf7;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  color: #665b85;
+  font-size: 14px;
+}
+
+@media (max-width: 400px) {
+  header h1 {
+    font-size: 27px;
+  }
+
+  .subjects button {
+    font-size: 14px;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="app">
-<header class="hero"><h1>Welcome to School AI 🤖</h1><p>Your friendly study helper!</p></header>
-<div class="subjects"><button onclick="pick('Maths')">📐 Maths</button><button onclick="pick('Science')">🔬 Science</button><button onclick="pick('English')">📚 English</button><button onclick="pick('Social Science')">🌍 Social Science</button><button onclick="pick('Computer')">💻 Computer</button></div>
-<div class="chat" id="chat" aria-live="polite"><div class="msg bot">👋 Hello! I'm School AI, a student-made educational project. Choose a subject or ask me a question!</div></div>
-<form class="entry" id="form"><input id="question" placeholder="Ask a school question..." autocomplete="off" required><button type="submit">Send ➤</button></form>
-<div class="actions"><button onclick="newChat()">＋ New Chat</button><button onclick="clearChat()">🗑 Clear Chat</button></div>
-<div class="about">About School AI 💡<br>A student-made educational AI project for learning. This demo works locally with prepared answers and does not use an external AI service.</div>
-</div>
+
+<header>
+  <h1>🎓 Welcome to School AI</h1>
+  <p>Your Smart Study Buddy 🤖</p>
+  <p class="byline">Made with ❤️ by Lucky Kadol</p>
+</header>
+
+<main>
+  <h2>📚 Choose a Subject</h2>
+
+  <div class="subjects">
+    <button onclick="askSubject('Maths')">➗ Maths</button>
+    <button onclick="askSubject('Science')">🔬 Science</button>
+    <button onclick="askSubject('English')">📖 English</button>
+    <button onclick="askSubject('Social Science')">🌍 Social Science</button>
+    <button onclick="askSubject('Computer')">💻 Computer</button>
+    <button onclick="askSubject('General Knowledge')">💡 General Knowledge</button>
+  </div>
+
+  <h2>💬 Ask School AI</h2>
+
+  <div class="chat">
+    <div id="messages">
+      <div class="msg bot">
+        Hi! 👋 Main School AI hoon. Mujhse apne school subjects ke questions poochho!
+      </div>
+    </div>
+
+    <div class="entry">
+      <input
+        id="question"
+        type="text"
+        placeholder="Type your question..."
+      >
+      <button onclick="sendMessage()">Send ➤</button>
+    </div>
+  </div>
+
+  <h2>✨ What You Can Learn</h2>
+
+  <div class="features">
+    <div class="feature">📘 <b>Easy Learning</b><p>Learn topics in simple words.</p></div>
+    <div class="feature">🧠 <b>Practice</b><p>Ask questions and practise.</p></div>
+    <div class="feature">💻 <b>Computer Skills</b><p>Explore coding basics.</p></div>
+    <div class="feature">🚀 <b>Study Anytime</b><p>Your study buddy is ready.</p></div>
+  </div>
+</main>
+
+<footer>
+  School AI © 2026 | Created by Lucky Kadol 💜
+</footer>
+
 <script>
-let subject='General';const chat=document.getElementById('chat');
-function add(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;chat.appendChild(d);chat.scrollTop=chat.scrollHeight}
-function pick(s){subject=s;document.getElementById('question').value='';add('Subject selected: '+s+' 📘','bot');document.getElementById('question').placeholder='Ask a '+s+' question...'}
-function answer(q){const x=q.toLowerCase();if(/^(hi|hello|hey)\b/.test(x))return 'Hello! 👋 Which school topic can I help you with?';if(x.includes('who are you')||x.includes('your name'))return 'I am School AI, a student-made educational chatbot demo.';if(x.includes('thank'))return 'You are welcome! Keep learning 😊';if(x.includes('photosynthesis'))return 'Photosynthesis is the process by which green plants use sunlight, water and carbon dioxide to make food and release oxygen.';if(x.includes('gravity'))return 'Gravity is the force that attracts objects with mass toward one another. Earth’s gravity pulls objects toward its centre.';if(x.includes('cell'))return 'A cell is the basic structural and functional unit of life.';if(x.includes('newton'))return 'Newton’s first law says an object remains at rest or in uniform straight-line motion unless acted on by an unbalanced external force.';if(x.includes('fraction'))return 'A fraction represents part of a whole. For example, 1/2 means one of two equal parts.';if(x.includes('area of rectangle'))return 'Area of a rectangle = length × breadth.';if(x.includes('noun'))return 'A noun is a word used to name a person, place, animal or thing. Examples: teacher, India, dog, book.';if(x.includes('verb'))return 'A verb expresses an action or state. Examples: run, write, is.';if(x.includes('cpu'))return 'CPU stands for Central Processing Unit. It executes instructions and processes data in a computer.';if(x.includes('internet'))return 'The internet is a global network of connected computers and devices that share information.';if(x.includes('democracy'))return 'Democracy is a form of government in which people choose their representatives through elections.';if(x.includes('capital of india'))return 'New Delhi is the capital of India.';return 'I’m a simple School AI demo, so I only know some prepared answers right now. Try asking about photosynthesis, cells, gravity, fractions, nouns, CPU, democracy or the capital of India.'}
-document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();const input=document.getElementById('question');const q=input.value.trim();if(!q)return;add(q,'user');input.value='';add(answer(q),'bot')});
-function clearChat(){chat.innerHTML=''}
-function newChat(){chat.innerHTML='';add('👋 New chat started! Choose a subject or ask a school question.','bot');subject='General'}
+const messages = document.getElementById("messages");
+const questionInput = document.getElementById("question");
+
+function addMessage(text, type) {
+  const div = document.createElement("div");
+  div.className = "msg " + type;
+  div.textContent = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function askSubject(subject) {
+  questionInput.value = "Help me study " + subject;
+  sendMessage();
+}
+
+function sendMessage() {
+  const question = questionInput.value.trim();
+
+  if (!question) return;
+
+  addMessage(question, "user");
+  questionInput.value = "";
+
+  const q = question.toLowerCase();
+  let answer;
+
+  if (q.includes("math") || q.includes("addition") || q.includes("2+2")) {
+    answer = "➗ Maths helps us solve problems using numbers. Example: 2 + 2 = 4. Apna exact maths question bhi poochho!";
+  } else if (q.includes("science") || q.includes("plant") || q.includes("water")) {
+    answer = "🔬 Science helps us understand the world. Water is H₂O, and plants use sunlight to make food. Kis topic ko samajhna hai?";
+  } else if (q.includes("english") || q.includes("grammar")) {
+    answer = "📖 English tip: A sentence usually begins with a capital letter and ends with punctuation. Which English topic are you studying?";
+  } else if (q.includes("social science") || q.includes("history") || q.includes("geography")) {
+    answer = "🌍 Social Science helps us learn about history, geography, society and government. Apna chapter ya question batao!";
+  } else if (q.includes("computer") || q.includes("coding")) {
+    answer = "💻 A computer takes input, processes data and produces output. Coding means writing instructions for a computer.";
+  } else if (q.includes("general knowledge") || q.includes("capital of india")) {
+    answer = "💡 India's capital is New Delhi. General Knowledge helps us learn about the world around us!";
+  } else if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
+    answer = "👋 Hello! Welcome to School AI. Main tumhari padhai mein help karne ke liye hoon. Apna question poochho!";
+  } else if (q.includes("who are you") || q.includes("your name")) {
+    answer = "🤖 Main School AI hoon, tumhara Smart Study Buddy! Ye project Lucky Kadol ne banaya hai.";
+  } else if (q.includes("thank")) {
+    answer = "😊 You're welcome! Keep learning and keep asking questions!";
+  } else {
+    answer = "🤖 Achha question hai! Main abhi basic demo chatbot hoon, isliye har question ka jawab nahi jaanta. Apna subject aur question thoda detail mein likho. Advanced AI answers ke liye AI service connect karni hogi.";
+  }
+
+  setTimeout(function() {
+    addMessage(answer, "bot");
+  }, 300);
+}
+
+questionInput.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+});
 </script>
+
 </body>
-  </html>
+</html>
