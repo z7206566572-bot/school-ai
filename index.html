@@ -10,150 +10,541 @@
   box-sizing: border-box;
 }
 
+:root {
+  --purple: #6338ed;
+  --blue: #168bea;
+  --ink: #17245e;
+  --muted: #56658e;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f0ff;
-  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #f7f8ff, #eef5ff);
 }
 
-header {
-  background: linear-gradient(135deg, #673de6, #2675ee);
+button, input {
+  font: inherit;
+}
+
+nav {
+  min-height: 76px;
+  padding: 14px 4%;
+  background: linear-gradient(100deg, #4221b6, #123b91);
   color: white;
-  text-align: center;
-  padding: 35px 15px;
-  border-radius: 0 0 28px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
 }
 
-header h1 {
-  font-size: 32px;
-  margin: 0 0 10px;
+.brand {
+  font-size: 27px;
+  font-weight: 800;
 }
 
-header p {
-  margin: 8px;
+.brand span {
+  color: #59d5ff;
 }
 
-.byline {
+.brand small {
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
   font-size: 14px;
-  opacity: 0.9;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #7ce3ff;
 }
 
 main {
-  max-width: 750px;
-  margin: 22px auto;
-  padding: 0 14px;
+  max-width: 1400px;
+  margin: auto;
+  padding: 22px 3%;
 }
 
-h2 {
-  color: #5432bd;
+.hero {
+  min-height: 220px;
+  padding: 25px;
+  border-radius: 18px;
+  background: linear-gradient(110deg, #7838f4, #174be0, #079fe8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 22px;
+  box-shadow: 0 12px 28px #3348bb25;
+  overflow: hidden;
+}
+
+.robot {
+  font-size: clamp(65px, 10vw, 115px);
+  text-align: center;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text .welcome {
+  font-size: 22px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 68px);
+  margin: 5px 0 10px;
+  line-height: 1.05;
+}
+
+.hero h1 span {
+  color: #5fe1ff;
+}
+
+.hero h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.hero p {
+  line-height: 1.7;
+}
+
+.hero-badge {
+  background: #ffffff20;
+  border: 1px solid #ffffff65;
+  border-radius: 30px;
+  padding: 13px 17px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 26px 0 15px;
+}
+
+.section-heading .emoji {
+  font-size: 32px;
+}
+
+.section-heading h2 {
+  margin: 0 0 5px;
+  font-size: 25px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 14px;
 }
 
 .subjects {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-bottom: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
 }
 
-.subjects button {
-  border: 0;
-  border-radius: 14px;
-  background: white;
-  color: #4930a5;
-  padding: 15px 8px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 3px 12px #dcd5f5;
-  cursor: pointer;
-}
-
-.chat {
-  background: white;
-  padding: 16px;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px #ddd6f5;
-}
-
-#messages {
-  height: 280px;
-  overflow-y: auto;
-  padding: 5px;
-}
-
-.msg {
-  padding: 11px 13px;
-  border-radius: 14px;
-  margin: 10px 0;
-  max-width: 90%;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.bot {
-  background: #eee9ff;
-  margin-right: auto;
-}
-
-.user {
-  background: #2675ee;
-  color: white;
-  margin-left: auto;
-}
-
-.entry {
+.subject {
+  min-height: 75px;
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  transition: transform .2s, box-shadow .2s;
 }
 
-input {
-  flex: 1;
-  min-width: 0;
-  padding: 13px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
+.subject:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px #263c7c18;
+}
+
+.subject-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--circle);
+  font-size: 28px;
+}
+
+.subject strong {
+  display: block;
+  margin-bottom: 6px;
   font-size: 16px;
 }
 
-.entry button {
-  background: #673de6;
+.subject small {
+  color: var(--muted);
+}
+
+.math {
+  --bg: #eef5ff;
+  --border: #b9d7ff;
+  --circle: #c9e5ff;
+}
+
+.science {
+  --bg: #effff0;
+  --border: #b5edbc;
+  --circle: #c9ffd0;
+}
+
+.english {
+  --bg: #fff0fc;
+  --border: #f2c5f6;
+  --circle: #f8d5ff;
+}
+
+.social {
+  --bg: #fff9e8;
+  --border: #ffe18a;
+  --circle: #ffe9a6;
+}
+
+.computer {
+  --bg: #e9fbff;
+  --border: #87e5fa;
+  --circle: #b5f0ff;
+}
+
+.gk {
+  --bg: #f3efff;
+  --border: #d0bdff;
+  --circle: #e0d3ff;
+}
+
+.chat-panel {
+  background: white;
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px #283c8414;
+  border: 1px solid #e1e6ff;
+}
+
+.chat-header {
+  background: linear-gradient(100deg, #6841ec, #4383f7);
   color: white;
-  border: 0;
-  padding: 12px 16px;
-  border-radius: 12px;
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
   font-weight: bold;
+  font-size: 19px;
+}
+
+.online {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.messages {
+  height: 270px;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  padding: 13px 16px;
+  border-radius: 17px;
+  max-width: 85%;
+  line-height: 1.6;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.bot-message {
+  background: #eeedff;
+  align-self: flex-start;
+  border-bottom-left-radius: 5px;
+}
+
+.user-message {
+  background: linear-gradient(120deg, #6542eb, #3478f1);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+  padding: 12px 18px 18px;
+}
+
+.chat-form input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #d4dcf4;
+  border-radius: 12px;
+  padding: 14px;
+  outline: none;
+}
+
+.chat-form input:focus {
+  border-color: #7047ef;
+}
+
+.send-btn {
+  border: 0;
+  border-radius: 12px;
+  background: var(--purple);
+  color: white;
+  padding: 0 20px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .features {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
 }
 
 .feature {
-  background: white;
-  padding: 15px;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px #e2dcf7;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--circle);
+  font-size: 29px;
+}
+
+.feature strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.feature p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.feature:nth-child(1) {
+  --bg: #f0f8ff;
+  --border: #b9ddff;
+  --circle: #d1e9ff;
+}
+
+.feature:nth-child(2) {
+  --bg: #fff1f7;
+  --border: #ffbfda;
+  --circle: #ffd6e7;
+}
+
+.feature:nth-child(3) {
+  --bg: #effff7;
+  --border: #a8efd0;
+  --circle: #c8f7df;
+}
+
+.feature:nth-child(4) {
+  --bg: #f4f0ff;
+  --border: #d4c2ff;
+  --circle: #e1d3ff;
 }
 
 footer {
+  margin-top: 25px;
+  padding: 24px 15px;
+  background: linear-gradient(100deg, #18234f, #283b82);
+  color: white;
   text-align: center;
-  padding: 22px;
-  color: #665b85;
   font-size: 14px;
 }
 
-@media (max-width: 400px) {
-  header h1 {
-    font-size: 27px;
+footer p {
+  margin: 6px;
+}
+
+@media (max-width: 800px) {
+  .nav-links {
+    gap: 12px;
   }
 
-  .subjects button {
-    font-size: 14px;
+  .hero {
+    padding: 22px 16px;
+  }
+
+  .hero-badge {
+    display: none;
+  }
+
+  .subjects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 13px 15px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    font-size: 23px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+
+  main {
+    padding: 15px 12px;
+  }
+
+  .hero {
+    min-height: 185px;
+    gap: 10px;
+    padding: 20px 12px;
+  }
+
+  .robot {
+    font-size: 58px;
+  }
+
+  .hero-text .welcome {
+    font-size: 15px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero h3 {
+    font-size: 15px;
+  }
+
+  .hero p {
+    font-size: 12px;
+  }
+
+  .section-heading h2 {
+    font-size: 21px;
+  }
+
+  .subjects {
+    gap: 9px;
+  }
+
+  .subject {
+    gap: 8px;
+    padding: 10px;
+    min-height: 74px;
+  }
+
+  .subject-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+
+  .subject strong {
+    font-size: 13px;
+  }
+
+  .subject small {
+    font-size: 11px;
+  }
+
+  .messages {
+    height: 260px;
+    padding: 12px;
+  }
+
+  .chat-header {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .chat-form {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .chat-form input {
+    padding: 12px 9px;
+    font-size: 13px;
+  }
+
+  .send-btn {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  .features {
+    gap: 9px;
+  }
+
+  .feature {
+    padding: 12px 9px;
+    gap: 9px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .feature-icon {
+    width: 43px;
+    height: 43px;
+    font-size: 23px;
+  }
+
+  .feature strong {
+    font-size: 13px;
+  }
+
+  .feature p {
+    font-size: 12px;
   }
 }
 </style>
@@ -161,116 +552,230 @@ footer {
 
 <body>
 
-<header>
-  <h1>🎓 Welcome to School AI</h1>
-  <p>Your Smart Study Buddy 🤖</p>
-  <p class="byline">Made with ❤️ by Lucky Kadol</p>
-</header>
-
-<main>
-  <h2>📚 Choose a Subject</h2>
-
-  <div class="subjects">
-    <button onclick="askSubject('Maths')">➗ Maths</button>
-    <button onclick="askSubject('Science')">🔬 Science</button>
-    <button onclick="askSubject('English')">📖 English</button>
-    <button onclick="askSubject('Social Science')">🌍 Social Science</button>
-    <button onclick="askSubject('Computer')">💻 Computer</button>
-    <button onclick="askSubject('General Knowledge')">💡 General Knowledge</button>
+<nav>
+  <div class="brand">
+    🎓 School <span>AI</span>
+    <small>by Lucky Kadol</small>
   </div>
 
-  <h2>💬 Ask School AI</h2>
+  <div class="nav-links">
+    <a href="#home">⌂ Home</a>
+    <a href="#subjects">📚 Subjects</a>
+    <a href="#about">ⓘ About</a>
+    <a href="#contact">✉ Contact</a>
+  </div>
+</nav>
 
-  <div class="chat">
-    <div id="messages">
-      <div class="msg bot">
-        Hi! 👋 Main School AI hoon. Mujhse apne school subjects ke questions poochho!
+<main>
+  <section class="hero" id="home">
+    <div class="robot">🤖🎓</div>
+
+    <div class="hero-text">
+      <p class="welcome">Welcome to</p>
+      <h1>School <span>AI</span></h1>
+      <h3>Your Smart Study Buddy 🚀</h3>
+      <p>Ask questions &nbsp; | &nbsp; Learn easily &nbsp; | &nbsp; Build your future</p>
+    </div>
+
+    <div class="hero-badge">
+      Made with ❤️ by<br><strong>Lucky Kadol</strong>
+    </div>
+  </section>
+
+  <section id="subjects">
+    <div class="section-heading">
+      <span class="emoji">📚</span>
+      <div>
+        <h2>Choose a Subject</h2>
+        <p>Select a subject to start learning or ask your question.</p>
       </div>
     </div>
 
-    <div class="entry">
-      <input
-        id="question"
-        type="text"
-        placeholder="Type your question..."
-      >
-      <button onclick="sendMessage()">Send ➤</button>
+    <div class="subjects">
+      <button class="subject math" onclick="askSubject('Maths')">
+        <span class="subject-icon">🧮</span>
+        <span><strong>Maths</strong><small>Numbers make sense!</small></span>
+      </button>
+
+      <button class="subject science" onclick="askSubject('Science')">
+        <span class="subject-icon">🧪</span>
+        <span><strong>Science</strong><small>Explore the world!</small></span>
+      </button>
+
+      <button class="subject english" onclick="askSubject('English')">
+        <span class="subject-icon">📖</span>
+        <span><strong>English</strong><small>Better words, brighter future!</small></span>
+      </button>
+
+      <button class="subject social" onclick="askSubject('Social Science')">
+        <span class="subject-icon">🌍</span>
+        <span><strong>Social Science</strong><small>Our world, our story!</small></span>
+      </button>
+
+      <button class="subject computer" onclick="askSubject('Computer')">
+        <span class="subject-icon">💻</span>
+        <span><strong>Computer</strong><small>Code your dreams!</small></span>
+      </button>
+
+      <button class="subject gk" onclick="askSubject('General Knowledge')">
+        <span class="subject-icon">💡</span>
+        <span><strong>General Knowledge</strong><small>Know more, grow more!</small></span>
+      </button>
     </div>
-  </div>
+  </section>
 
-  <h2>✨ What You Can Learn</h2>
+  <section id="chat">
+    <div class="section-heading">
+      <span class="emoji">💬</span>
+      <div>
+        <h2>Ask School AI</h2>
+        <p>Your friendly learning assistant.</p>
+      </div>
+    </div>
 
-  <div class="features">
-    <div class="feature">📘 <b>Easy Learning</b><p>Learn topics in simple words.</p></div>
-    <div class="feature">🧠 <b>Practice</b><p>Ask questions and practise.</p></div>
-    <div class="feature">💻 <b>Computer Skills</b><p>Explore coding basics.</p></div>
-    <div class="feature">🚀 <b>Study Anytime</b><p>Your study buddy is ready.</p></div>
-  </div>
+    <div class="chat-panel">
+      <div class="chat-header">
+        <span>💬 Ask School AI</span>
+        <span class="online">🟢 Online</span>
+      </div>
+
+      <div class="messages" id="messages" aria-live="polite">
+        <div class="message bot-message">
+          Hi! 👋 Main School AI hoon. Mujhse apne school subjects ke questions poochho!
+        </div>
+      </div>
+
+      <form class="chat-form" id="chatForm">
+        <input
+          id="question"
+          type="text"
+          placeholder="Type your question..."
+          autocomplete="off"
+          required
+        >
+        <button class="send-btn" type="submit">➤ Send</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-heading">
+      <span class="emoji">⭐</span>
+      <div>
+        <h2>What You Can Learn</h2>
+        <p>Everything you need for a better tomorrow.</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature-icon">📘</span>
+        <div><strong>Easy Learning</strong><p>Learn topics in simple words.</p></div>
+      </div>
+
+      <div class="feature">
+        <span class="feature-icon">🧠</span>
+        <div><strong>Practice</strong><p>Ask questions and practise.</p></div>
+      </div>
+
+      <div class="feature">
+        <span class="feature-icon">💻</span>
+        <div><strong>Computer Skills</strong><p>Explore coding basics.</p></div>
+      </div>
+
+      <div class="feature">
+        <span class="feature-icon">🚀</span>
+        <div><strong>Study Anytime</strong><p>Your study buddy is ready.</p></div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>
-  School AI © 2026 | Created by Lucky Kadol 💜
+<footer id="contact">
+  <p>School AI © 2026 | Created by Lucky Kadol 💜</p>
+  <p>Keep Learning, Keep Growing ✨</p>
 </footer>
 
 <script>
 const messages = document.getElementById("messages");
 const questionInput = document.getElementById("question");
+const chatForm = document.getElementById("chatForm");
 
 function addMessage(text, type) {
-  const div = document.createElement("div");
-  div.className = "msg " + type;
-  div.textContent = text;
-  messages.appendChild(div);
+  const message = document.createElement("div");
+  message.className = "message " + type;
+  message.textContent = text;
+  messages.appendChild(message);
   messages.scrollTop = messages.scrollHeight;
 }
 
 function askSubject(subject) {
   questionInput.value = "Help me study " + subject;
-  sendMessage();
+  questionInput.focus();
+  chatForm.requestSubmit();
 }
 
-function sendMessage() {
-  const question = questionInput.value.trim();
+function getAnswer(question) {
+  const q = question.toLowerCase();
 
+  if (q.includes("hello") || q === "hi" || q.includes("hey")) {
+    return "👋 Hello! Welcome to School AI. Apna question poochho!";
+  }
+
+  if (q.includes("who are you") || q.includes("your name")) {
+    return "🤖 Main School AI hoon, tumhara Smart Study Buddy! Ye project Lucky Kadol ne banaya hai.";
+  }
+
+  if (q.includes("capital of india") || q.includes("india capital")) {
+    return "🇮🇳 India's capital is New Delhi.";
+  }
+
+  if (q.includes("2+2") || q.includes("2 + 2")) {
+    return "➗ 2 + 2 = 4. Maths ko step by step seekhna easy hai!";
+  }
+
+  if (q.includes("math") || q.includes("addition") || q.includes("multiply")) {
+    return "➗ Maths helps us solve problems using numbers. Apna exact sum likho, main basic examples se help karunga.";
+  }
+
+  if (q.includes("science") || q.includes("plant") || q.includes("water")) {
+    return "🔬 Science helps us understand the world. Water ka chemical formula H₂O hai. Apna science topic batao!";
+  }
+
+  if (q.includes("english") || q.includes("grammar")) {
+    return "📖 English tip: A sentence usually starts with a capital letter and ends with punctuation. Kaunsa topic seekhna hai?";
+  }
+
+  if (q.includes("social science") || q.includes("history") || q.includes("geography")) {
+    return "🌍 Social Science mein history, geography aur society padhte hain. Apna chapter ya question batao!";
+  }
+
+  if (q.includes("computer") || q.includes("coding") || q.includes("html")) {
+    return "💻 Coding means writing instructions for a computer. HTML is used to structure web pages.";
+  }
+
+  if (q.includes("general knowledge") || q.includes("gk")) {
+    return "💡 General Knowledge helps us learn about the world. Tum India, science, geography ya history ke questions poochh sakte ho!";
+  }
+
+  if (q.includes("thank")) {
+    return "😊 You're welcome! Keep learning and keep asking questions!";
+  }
+
+  return "🤖 Achha question hai! Main abhi basic demo chatbot hoon, isliye har question ka answer nahi jaanta. Apna subject aur question detail mein likho. Real AI answers ke liye ek AI service connect karni hogi.";
+}
+
+chatForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const question = questionInput.value.trim();
   if (!question) return;
 
-  addMessage(question, "user");
+  addMessage(question, "user-message");
   questionInput.value = "";
 
-  const q = question.toLowerCase();
-  let answer;
-
-  if (q.includes("math") || q.includes("addition") || q.includes("2+2")) {
-    answer = "➗ Maths helps us solve problems using numbers. Example: 2 + 2 = 4. Apna exact maths question bhi poochho!";
-  } else if (q.includes("science") || q.includes("plant") || q.includes("water")) {
-    answer = "🔬 Science helps us understand the world. Water is H₂O, and plants use sunlight to make food. Kis topic ko samajhna hai?";
-  } else if (q.includes("english") || q.includes("grammar")) {
-    answer = "📖 English tip: A sentence usually begins with a capital letter and ends with punctuation. Which English topic are you studying?";
-  } else if (q.includes("social science") || q.includes("history") || q.includes("geography")) {
-    answer = "🌍 Social Science helps us learn about history, geography, society and government. Apna chapter ya question batao!";
-  } else if (q.includes("computer") || q.includes("coding")) {
-    answer = "💻 A computer takes input, processes data and produces output. Coding means writing instructions for a computer.";
-  } else if (q.includes("general knowledge") || q.includes("capital of india")) {
-    answer = "💡 India's capital is New Delhi. General Knowledge helps us learn about the world around us!";
-  } else if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
-    answer = "👋 Hello! Welcome to School AI. Main tumhari padhai mein help karne ke liye hoon. Apna question poochho!";
-  } else if (q.includes("who are you") || q.includes("your name")) {
-    answer = "🤖 Main School AI hoon, tumhara Smart Study Buddy! Ye project Lucky Kadol ne banaya hai.";
-  } else if (q.includes("thank")) {
-    answer = "😊 You're welcome! Keep learning and keep asking questions!";
-  } else {
-    answer = "🤖 Achha question hai! Main abhi basic demo chatbot hoon, isliye har question ka jawab nahi jaanta. Apna subject aur question thoda detail mein likho. Advanced AI answers ke liye AI service connect karni hogi.";
-  }
-
-  setTimeout(function() {
-    addMessage(answer, "bot");
-  }, 300);
-}
-
-questionInput.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    sendMessage();
-  }
+  const answer = getAnswer(question);
+  addMessage(answer, "bot-message");
 });
 </script>
 
